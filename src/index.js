@@ -6,6 +6,7 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import App from './App';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+import Dashboard from './pages/dashboard/dashboard.page';
 
 const store = createStore(
   // reducers,
@@ -20,7 +21,7 @@ root.render(
   <Provider store={store}>
     <Routes>
       <Route path="/" element={<App />} />
-      <Route path="/dashboard/:userId" element={<App />} />
+      <Route path="/dashboard/:userId" element={<Dashboard />} />
     </Routes>
   </Provider>
 </BrowserRouter>
