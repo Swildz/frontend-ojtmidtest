@@ -1,35 +1,91 @@
-const axios = require('axios');
-const redis = require('redis');
+import axios from "axios";
 
-const redisClient = redis.createClient();
+export const GET_LIST_PRODUCT = "GET_LIST_PRODUCT"
+export const GET_DETAIL_PRODUCT = "GET_DETAIL_PRODUCT"
 
-async function fetchAndStoreProducts() {
-    try {
-      const response = await axios.get('https://dummyjson.com/products');
-      const products = response.data;
-      redisClient.set('products', JSON.stringify(products), 'EX', 60 * 60 * 24); // set expiry time to 24 hours
-      return products;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  
-  async function getProductsFromRedis() {
-    try {
-      const products = await redisClient.getAsync('products');
-      if (products === null) {
-        return fetchAndStoreProducts(); // fetch data from API and store in Redis
-      } else {
-        return JSON.parse(products);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  
-  getProductsFromRedis()
-  .then(products => {
-    console.log(products);
-    // Do something with the products data
-  })
-  .catch(error => console.log(error));
+export const getListProduct = () => {
+    return (dispatch) => {
+        //loading
+        dispatch({
+            type: GET_LIST_PRODUCT,
+            payload: {
+                loading: true,
+                data: false,
+                errorMessage: false,
+            },
+        });
+
+        //get Api
+        axios({
+            method: "GET",
+            url: "https://dummyjson.com/products",
+            timeout: 120000,
+        })
+            .then((response) => {
+                //berhasi get api
+                dispatch({
+                    type: GET_LIST_PRODUCT,
+                    payload: {
+                        loading: false,
+                        data: response.data,
+                        errorMessage: false,
+                    },
+                });
+            })
+            .catch((error) => {
+                //gagal get api
+                dispatch({
+                    type: GET_LIST_PRODUCT,
+                    payload: {
+                        loading: false,
+                        data: false,
+                        errorMessage: error.message,
+                    },
+                });
+            });
+    };
+};
+
+export const getDetaiProduct = (data) => {
+    return (dispatch) => {
+        //loading
+        dispatch({
+            type: GET_DETAIL_PRODUCT,
+            payload: {
+                loading: true,
+                data: data,
+                errorMessage: false,
+            },
+        });
+
+        //get Api
+        axios({
+            method: "GET",
+            url: "https://dummyjson.com/products/"+data.id,
+            timeout: 120000,
+            data:data
+        })
+            .then((response) => {
+                //berhasi get api
+                dispatch({
+                    type: GET_DETAIL_PRODUCT,
+                    payload: {
+                        loading: false,
+                        data: response.data,
+                        errorMessage: false,
+                    },
+                });
+            })
+            .catch((error) => {
+                //gagal get api
+                dispatch({
+                    type: GET_DETAIL_PRODUCT,
+                    payload: {
+                        loading: false,
+                        data: false,
+                        errorMessage: error.message,
+                    },
+                });
+            });
+    };
+};
