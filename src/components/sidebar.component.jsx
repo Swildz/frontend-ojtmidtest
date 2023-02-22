@@ -15,12 +15,11 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import { useState } from 'react';
 import Profile from '../pages/profile/profile.page';
-import { RxDashboard} from 'react-icons/rx';
-import {CgProfile, CgListTree} from 'react-icons/cg';
+import { CgProfile, CgListTree, CgDetailsLess } from 'react-icons/cg';
+import ProductList from '../pages/productList/productList.page';
+import ProductDetail from '../pages/productDetail/productDetail.page';
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -91,8 +90,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function SidebarNav() {
     const theme = useTheme();
     const [open, setOpen] = useState(false);
-    const [profile, setProfile] = useState("Profile");
-
+    const [menu, setMenu] = useState("Profile");
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -131,27 +129,7 @@ export default function SidebarNav() {
                 </DrawerHeader>
                 <Divider />
                 <List>
-                    <ListItem disablePadding sx={{ display: 'block' }}>
-                        <ListItemButton
-                            sx={{
-                                minHeight: 48,
-                                justifyContent: open ? 'initial' : 'center',
-                                px: 2.5,
-                            }}
-                        >
-                            <ListItemIcon
-                                sx={{
-                                    minWidth: 0,
-                                    mr: open ? 3 : 'auto',
-                                    justifyContent: 'center',
-                                }}
-                            >
-                                <RxDashboard />
-                            </ListItemIcon>
-                            <ListItemText primary="Dashboard" />
-                        </ListItemButton>
-                    </ListItem>
-                    <ListItem disablePadding sx={{ display: 'block' }}>
+                    <ListItem disablePadding sx={{ display: 'block' }} onClick={() => setMenu("List")}>
                         <ListItemButton
                             sx={{
                                 minHeight: 48,
@@ -171,7 +149,7 @@ export default function SidebarNav() {
                             <ListItemText primary="Product List" />
                         </ListItemButton>
                     </ListItem>
-                    <ListItem disablePadding sx={{ display: 'block' }}>
+                    <ListItem disablePadding sx={{ display: 'block' }} onClick={() => setMenu("Detail")}>
                         <ListItemButton
                             sx={{
                                 minHeight: 48,
@@ -186,12 +164,12 @@ export default function SidebarNav() {
                                     justifyContent: 'center',
                                 }}
                             >
-                                <MailIcon />
+                                <CgDetailsLess />
                             </ListItemIcon>
                             <ListItemText primary="Product Detail" />
                         </ListItemButton>
                     </ListItem>
-                    <ListItem disablePadding sx={{ display: 'block' }}>
+                    <ListItem disablePadding sx={{ display: 'block' }} onClick={() => setMenu("Profile")}>
                         <ListItemButton
                             sx={{
                                 minHeight: 48,
@@ -217,7 +195,13 @@ export default function SidebarNav() {
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 <DrawerHeader />
                 {
-                    profile === "Profile" && <Profile />
+                    menu === "Profile" && <Profile />
+                }
+                {
+                    menu === "List" && <ProductList />
+                }
+                {
+                    menu === "Detail" && <ProductDetail />
                 }
             </Box>
         </Box>
