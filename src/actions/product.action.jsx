@@ -23,6 +23,7 @@ export const getListProduct = () => {
         })
             .then((response) => {
                 //berhasi get api
+                console.log("response ", response);
                 dispatch({
                     type: GET_LIST_PRODUCT,
                     payload: {
@@ -34,6 +35,7 @@ export const getListProduct = () => {
             })
             .catch((error) => {
                 //gagal get api
+                console.log("error :" , error);
                 dispatch({
                     type: GET_LIST_PRODUCT,
                     payload: {

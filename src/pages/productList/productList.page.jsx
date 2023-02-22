@@ -1,7 +1,9 @@
+import { ListProduct } from "../../components/index.component";
+
 const ProductList = () => {
     return (
         <div>
-            <h1>this ProductList</h1>
+            <ListProduct/>
         </div>
     )
 }

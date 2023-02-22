@@ -13,6 +13,7 @@ const initialState = {
 const product = (state = initialState, action) => {
     switch (action.type) {
         case GET_LIST_PRODUCT:
+            console.log("5. Tempat Masuk Reducer", action);
             return {
                 ...state,
                 getListProductResult: action.payload.data,
