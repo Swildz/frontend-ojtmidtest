@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react'
 import { Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDetaiProduct, getListProduct } from '../../actions/product.action';
+import { getDetaiProduct, getListProduct } from '../../actions/productAction';
+
 
 function ListProduct() {
     const {
         getListProductResult,
         getListProductLoading,
         getListProductError,
-    } = useSelector((state) => state.ProductReducer);
+      } = useSelector((state) => state.ProductReducer);
     const dispatch = useDispatch();
     useEffect(() => {
         //panggil action getListProduct
@@ -37,10 +38,9 @@ function ListProduct() {
                         </tr>
                     </thead>
                     <tbody>
-                        {getListProductResult.map((product, index) => {
+                        {getListProductResult.products && getListProductResult.products.map((product) => {
                             return (
-                                <tr key={index}>
-                                    <td>{index + 1}</td>
+                                <tr key={product.id}>
                                     <td>{product.title}</td>
                                     <td>{product.description}</td>
                                     <td>{product.price}</td>

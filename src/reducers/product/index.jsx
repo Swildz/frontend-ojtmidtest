@@ -1,4 +1,4 @@
-import { GET_DETAIL_PRODUCT, GET_LIST_PRODUCT } from "../../actions/product.action";
+import { GET_DETAIL_PRODUCT, GET_LIST_PRODUCT } from "../../actions/productAction";
 
 const initialState = {
     getListProductResult: false,

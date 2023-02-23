@@ -4,6 +4,7 @@ export const GET_LIST_PRODUCT = "GET_LIST_PRODUCT"
 export const GET_DETAIL_PRODUCT = "GET_DETAIL_PRODUCT"
 
 export const getListProduct = () => {
+    console.log("2. Masuk Action");
     return (dispatch) => {
         //loading
         dispatch({
@@ -23,7 +24,7 @@ export const getListProduct = () => {
         })
             .then((response) => {
                 //berhasi get api
-                console.log("response ", response);
+                console.log("3. Berhasil ambil data", response);
                 dispatch({
                     type: GET_LIST_PRODUCT,
                     payload: {
@@ -35,7 +36,7 @@ export const getListProduct = () => {
             })
             .catch((error) => {
                 //gagal get api
-                console.log("error :" , error);
+                console.log("3. Gagal ambil data" , error);
                 dispatch({
                     type: GET_LIST_PRODUCT,
                     payload: {
