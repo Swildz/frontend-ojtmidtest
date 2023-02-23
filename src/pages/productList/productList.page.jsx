@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 
 const ProductList = (props) => {
     const [products, setProduct] = useState([])
-
     const getProduct = async () => {
         try {
             const response = await axios.get('https://dummyjson.com/products')
@@ -14,6 +14,7 @@ const ProductList = (props) => {
             console.log(error.message);
         }
     }
+
     useEffect(() => {
         getProduct();
     }, [])
@@ -22,7 +23,7 @@ const ProductList = (props) => {
             <div className="container">
                 <div className="row jusify-content-center">
                     <div className="col-md-8">
-                    <Table striped bordered hover>
+                        <Table striped bordered hover>
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -43,7 +44,9 @@ const ProductList = (props) => {
                                     return (
                                         <tr key={index}>
                                             <td>{product.id}</td>
-                                            <td>{product.title}</td>
+                                            <td>
+                                            <NavLink to={`https://dummyjson.com/products/${product.id}`}>{product.title}</NavLink> 
+                                            </td>
                                             <td>{product.description}</td>
                                             <td>{product.price}</td>
                                             <td>{product.description}</td>

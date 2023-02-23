@@ -1,3 +1,3 @@
-import ListProduct from "./ListProduct";
+import ListProduct from "./ListProduct/listProduct.component";
 
 export {ListProduct}

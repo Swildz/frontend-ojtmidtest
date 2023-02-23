@@ -7,6 +7,7 @@ import App from './App';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import Dashboard from './pages/dashboard/dashboard.page';
+import ProductDetail from './pages/productDetail/productDetail.page';
 
 const store = createStore(
   reducers,
@@ -22,6 +23,7 @@ root.render(
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/dashboard/:userId" element={<Dashboard />} />
+      <Route path="/dashboard/:userId/:productId" element={<ProductDetail />} />
     </Routes>
   </Provider>
 </BrowserRouter>
