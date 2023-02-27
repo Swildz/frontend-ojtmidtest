@@ -149,7 +149,7 @@ export default function SidebarNav() {
                             <ListItemText primary="Product List" />
                         </ListItemButton>
                     </ListItem>
-                    <ListItem disablePadding sx={{ display: 'block' }} onClick={() => setMenu("Detail")}>
+                    <ListItem disablePadding sx={{ display: 'block' }} onClick={() => setMenu("productDetail")}>
                         <ListItemButton
                             sx={{
                                 minHeight: 48,
@@ -201,7 +201,7 @@ export default function SidebarNav() {
                     menu === "List" && <ProductList />
                 }
                 {
-                    menu === "Detail" && <ProductDetail />
+                    menu === "productDetail" && <ProductDetail />
                 }
             </Box>
         </Box>

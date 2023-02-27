@@ -23,7 +23,7 @@ root.render(
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/dashboard/:userId" element={<Dashboard />} />
-      <Route path="/dashboard/:userId/:productId" element={<ProductDetail />} />
+      <Route path="/productDetail/:identifier" element={<ProductDetail/>}/>
     </Routes>
   </Provider>
 </BrowserRouter>
