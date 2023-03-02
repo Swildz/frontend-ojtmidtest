@@ -20,6 +20,8 @@ import Profile from '../pages/profile/profile.page';
 import { CgProfile, CgListTree, CgDetailsLess } from 'react-icons/cg';
 import ProductList from '../pages/productList/productList.page';
 import ProductDetail from '../pages/productDetail/productDetail.page';
+import ListProduct from './ListProduct/listProduct.component';
+import DetailProduct from './detailProduct/detailProduct.component';
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -198,10 +200,10 @@ export default function SidebarNav() {
                     menu === "Profile" && <Profile />
                 }
                 {
-                    menu === "List" && <ProductList />
+                    menu === "List" && <ListProduct />
                 }
                 {
-                    menu === "productDetail" && <ProductDetail />
+                    menu === "productDetail" && <DetailProduct />
                 }
             </Box>
         </Box>

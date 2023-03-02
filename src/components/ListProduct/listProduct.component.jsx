@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Table } from 'react-bootstrap';
+import { NavLink, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDetaiProduct, getListProduct } from '../../actions/productAction';
 
@@ -9,7 +9,7 @@ function ListProduct() {
         getListProductResult,
         getListProductLoading,
         getListProductError,
-      } = useSelector((state) => state.ProductReducer);
+    } = useSelector((state) => state.ProductReducer);
     const dispatch = useDispatch();
     useEffect(() => {
         //panggil action getListProduct
@@ -38,9 +38,24 @@ function ListProduct() {
                         </tr>
                     </thead>
                     <tbody>
-                        {getListProductResult.products && getListProductResult.products.map((product) => {
+                        {getListProductResult.products.map((product, index) => {
                             return (
-                                <tr key={product.id}>
+                                <tr key={index}>
+                                    {/* <td>{index + 1}</td> */}
+                                    <td>
+                                        <NavLink
+                                            className="btn btn-warning mx-2"
+                                            onClick={() => dispatch(getDetaiProduct(product))}
+                                        >
+                                            {product.id}
+                                        </NavLink>
+
+                                    </td>
+                                    {/* <td>
+                                        <NavLink to={`/productDetail/${product.id}`}>
+                                            {product.title}
+                                        </NavLink>
+                                    </td> */}
                                     <td>{product.title}</td>
                                     <td>{product.description}</td>
                                     <td>{product.price}</td>
@@ -50,17 +65,31 @@ function ListProduct() {
                                     <td>{product.stock}</td>
                                     <td>{product.brand}</td>
                                     <td>{product.category}</td>
-                                    <td>{product.thumbnail}</td>
-                                    <td>{product.images}</td>
                                     <td>
-                                        <button
+                                        <img
+                                            src={product.thumbnail}
+                                            width="50px"
+                                            height="50px"
+                                        />
+                                    </td>
+                                    <td>
+                                        <img
+                                            src={product.images}
+                                            width="50px"
+                                            height="50px"
+                                        />
+                                    </td>
+                                    {/* <td>{product.thumbnail}</td>
+                                    <td>{product.images}</td> */}
+                                    {/* <td>
+                                        <NavLink
                                             className="btn btn-warning mx-2"
                                             onClick={() => dispatch(getDetaiProduct(product))}
                                         >
-                                            Detail
-                                        </button>
+                                            {product.id}
+                                        </NavLink>
 
-                                    </td>
+                                    </td> */}
                                 </tr>
                             );
                         })}

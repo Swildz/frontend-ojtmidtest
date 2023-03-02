@@ -40,7 +40,7 @@ const ProductList = (props) => {
                 </tr>
               </thead>
               <tbody>
-                {products.products &&
+              {products.products &&
                   products.products.map((product, index) => {
                     return (
                       <tr key={index}>
@@ -75,6 +75,41 @@ const ProductList = (props) => {
                       </tr>
                     );
                   })}
+                {/* {products.products &&
+                  products.products.map((product, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>{product.id}</td>
+                        <td>
+                          <NavLink to={`/productDetail/${product.id}`}>
+                            {product.title}
+                          </NavLink>
+                        </td>
+                        <td>{product.description}</td>
+                        <td>{product.price}</td>
+                        <td>{product.description}</td>
+                        <td>{product.discountPercentage}</td>
+                        <td>{product.rating}</td>
+                        <td>{product.stock}</td>
+                        <td>{product.brand}</td>
+                        <td>{product.category}</td>
+                        <td>
+                          <img
+                            src={product.thumbnail}
+                            width="50px"
+                            height="50px"
+                          />
+                        </td>
+                        <td>
+                          <img
+                            src={product.images}
+                            width="50px"
+                            height="50px"
+                          />
+                        </td>
+                      </tr>
+                    );
+                  })} */}
               </tbody>
             </Table>
           </div>

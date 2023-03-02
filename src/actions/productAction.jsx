@@ -19,7 +19,7 @@ export const getListProduct = () => {
         //get Api
         axios({
             method: "GET",
-            url: "https://dummyjson.com/products",
+            url: "http://localhost:3001/product/",
             timeout: 120000,
         })
             .then((response) => {
@@ -64,9 +64,8 @@ export const getDetaiProduct = (data) => {
         //get Api
         axios({
             method: "GET",
-            url: "https://dummyjson.com/products/"+data.id,
+            url: "http://localhost:3001/product/"+data.id,
             timeout: 120000,
-            data:data
         })
             .then((response) => {
                 //berhasi get api
